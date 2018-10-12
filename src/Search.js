@@ -1,6 +1,6 @@
 import React from 'react';
 
-§export default function Search({ searchValue, searchTermChanged, search }) {
+export default function Search({ searchValue, searchTermChanged, search }) {
     return (
         <div>
             <label htmlFor="search-input">Search images:</label>
