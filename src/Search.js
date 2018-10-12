@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function Search({searchValue, searchTermChanged, search}) {
+§export default function Search({ searchValue, searchTermChanged, search }) {
     return (
-        <form onSubmit={search}>
+        <div>
             <label htmlFor="search-input">Search images:</label>
             <input
                 id="search-input"
@@ -16,7 +16,7 @@ export default function Search({searchValue, searchTermChanged, search}) {
                     }
                 }}
             />
-            <input type="submit" value="Search" />
-        </form>
+            <input onClick={search} type="submit" value="Search" />
+        </div>
     )
 }

@@ -24,7 +24,7 @@ class App extends Component {
         this.setState({ searchValue: e.target.value });
     }
 
-    search(e) {
+    search() {
         this.setState({ loading: true });
         searchTerm(this.state.searchValue)
             .then(photos => this.setState({ photos, loading: false }))
