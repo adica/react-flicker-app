@@ -4,8 +4,7 @@ const flickerApi = 'https://api.flickr.com/services/rest';
 export const searchTerm = (term) => {
 
     const apiUrl = flickerApi
-        + `?method=flickr.photos.search&`
-        + `sort=relevance&format=json&nojsoncallback=1&`
+        + `?method=flickr.photos.search&sort=relevance&format=json&nojsoncallback=1&`
         + `api_key=${apiKey}&text=${term}`;
 
     return fetch(apiUrl)

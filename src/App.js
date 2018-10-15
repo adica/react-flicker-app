@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { searchTerm } from './search-service';
 import Search from './Search';
 import Photos from './Photos';
-import './App.css';
+import './App.scss';
 
 class App extends Component {
     constructor(props) {
@@ -31,6 +31,10 @@ class App extends Component {
             .catch(err => this.setState({ photos: [], loading: false }));
     }
 
+    onImageClick(e) {
+        console.log('onImageClick: ', e.target.id);
+    }
+
     render() {
         return (
             <div className="App">
@@ -50,7 +54,10 @@ class App extends Component {
                     )}
 
                     {this.state.photos.length > 0 && !this.state.loading && (
-                        <Photos photos={this.state.photos} />
+                        <Photos
+                            photos={this.state.photos}
+                            onImageClick={this.onImageClick}
+                        />
                     )}
                 </div>
             </div>
