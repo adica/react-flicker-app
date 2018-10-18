@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { searchTerm } from './search-service';
-import Search from './Search';
-import Photos from './Photos';
-import './App.scss';
+import { searchTerm } from './services/search-service';
+import Search from './components/search';
+import Photos from './components/photos';
+import './app.scss';
 
 class App extends Component {
     constructor(props) {

@@ -1,0 +1,11 @@
+.search {
+  width: 600px;
+  margin: 0 auto;
+
+  input[type="submit"] {
+    background-color: tomato;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+  }
+}
