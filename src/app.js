@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { searchTerm } from './services/search-service';
+import { search } from './services/search-service';
 import Search from './components/search';
 import Photos from './components/photos';
+import Videos from './components/videos';
 import './app.scss';
 
 class App extends Component {
@@ -10,10 +11,12 @@ class App extends Component {
         this.state = {
             loading: true,
             searchValue: 'car',
+            engine: 'flicker',
             photos: []
         };
         this.search = this.search.bind(this);
         this.searchTermChanged = this.searchTermChanged.bind(this);
+        this.engineChanged = this.engineChanged.bind(this);
     }
 
     componentDidMount() {
@@ -26,9 +29,35 @@ class App extends Component {
 
     search() {
         this.setState({ loading: true });
-        searchTerm(this.state.searchValue)
-            .then(photos => this.setState({ photos, loading: false }))
+        search(this.state.searchValue, this.state.engine)
+            .then(images => {
+                console.log(images[0]);
+                const photos = images.map((img) => {
+                    if (this.state.engine === 'giphy') {
+                        return {
+                            id: img.id,
+                            videoSmall: img.images['downsized_small'],
+                            videoOriginal: img.images['original_mp4'],
+                            thumbnail: img.images['480w_still']
+                        }
+                    } else if (this.state.engine === 'flicker') {
+                        return {
+                            id: img['id'],
+                            url: `http://farm${img.farm}.staticflickr.com/` +
+                            `${img.server}/${img.id}_${img.secret}.jpg`
+                        }
+                    }
+                });
+                this.setState({ photos, loading: false })
+            })
             .catch(err => this.setState({ photos: [], loading: false }));
+    }
+
+    engineChanged(e) {
+        const value = e.target.value;
+        this.setState(() => ({
+            engine: value
+        }), this.search(value));
     }
 
     onImageClick(e) {
@@ -40,6 +69,8 @@ class App extends Component {
             <div className="App">
                 <Search
                     search={this.search}
+                    engine={this.state.engine}
+                    engineChanged={this.engineChanged}
                     searchTermChanged={this.searchTermChanged}
                     searchValue={this.state.searchValue}
                 />
@@ -54,11 +85,23 @@ class App extends Component {
                     )}
 
                     {this.state.photos.length > 0 && !this.state.loading && (
-                        <Photos
-                            photos={this.state.photos}
-                            onImageClick={this.onImageClick}
-                        />
+                        <div>
+                            {this.state.engine === 'flicker' && (
+                                <Photos
+                                    photos={this.state.photos}
+                                    onImageClick={this.onImageClick}
+                                />
+                            )}
+                            {this.state.engine === 'giphy' && (
+                                <Videos
+                                    videos={this.state.photos}
+                                    onVideoClick={this.onImageClick}
+                                />
+                            )}
+
+                        </div>
                     )}
+
                 </div>
             </div>
         );

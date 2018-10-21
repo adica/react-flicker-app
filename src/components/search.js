@@ -1,7 +1,7 @@
 import React from 'react';
 import './search.scss';
 
-export default function Search({ searchValue, searchTermChanged, search }) {
+export default function Search({ searchValue, searchTermChanged, search, engine, engineChanged}) {
     return (
         <div className="search">
             <label htmlFor="search-input">Search images:</label>
@@ -17,6 +17,12 @@ export default function Search({ searchValue, searchTermChanged, search }) {
                     }
                 }}
             />
+            <select
+                value={engine}
+                onChange={engineChanged} >
+                <option value="flicker">Flicker</option>
+                <option value="giphy">Gighy</option>
+            </select>
             <input onClick={search} type="submit" value="Search" />
         </div>
     )
