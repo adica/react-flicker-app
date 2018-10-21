@@ -1,11 +1,25 @@
 .search {
-  width: 600px;
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  input {
+    border: 1px solid #ececec;
+    border-radius: 4px;
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  #search-input {
+    width: 350px;
+  }
 
   input[type="submit"] {
     background-color: tomato;
     color: #fff;
     cursor: pointer;
     border: 0;
+    width: 200px;
   }
 }

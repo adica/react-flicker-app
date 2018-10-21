@@ -9,7 +9,7 @@ class App extends Component {
         super(props);
         this.state = {
             loading: true,
-            searchValue: 'cat',
+            searchValue: 'car',
             photos: []
         };
         this.search = this.search.bind(this);
