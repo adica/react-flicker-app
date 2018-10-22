@@ -18,9 +18,7 @@ export default class Photo extends React.Component {
 
     render() {
         const { photo, onImageClick } = this.props;
-
         return (
-
             <article>
                 <Observer onChange={this.handleChange} rootMargin="50px 50px 50px 50px">
                     <a
@@ -33,8 +31,7 @@ export default class Photo extends React.Component {
                             <figure
                                 className="absolute-bg"
                                 style={{
-                                    backgroundImage: `url(http://farm${photo.farm}.staticflickr.com/` +
-                                    `${photo.server}/${photo.id}_${photo.secret}.jpg)`
+                                    backgroundImage: `url(${photo.url})`
                                 }}
                             />
                         )}
@@ -46,6 +43,7 @@ export default class Photo extends React.Component {
                         )}
                     </a>
                 </Observer>
+
             </article>
 
         )
