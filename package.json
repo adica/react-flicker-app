@@ -2,7 +2,7 @@
   "name": "react-flicker-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://adica.github.io/react-flicker-app/",
+  "homepage": "https://adica.github.io/react-flicker-app",
   "devDependencies": {
     "gh-pages": "^1.2.0"
   },
