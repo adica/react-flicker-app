@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { search } from './services/search-service';
+import { searchForAssest } from './services/search-service';
 import Search from './components/search';
 import Photos from './components/photos';
 import Videos from './components/videos';
@@ -16,7 +16,7 @@ class App extends Component {
         };
         this.search = this.search.bind(this);
         this.searchTermChanged = this.searchTermChanged.bind(this);
-        this.engineChanged = this.engineChanged.bind(this);
+        this.searchEngineChanged = this.searchEngineChanged.bind(this);
     }
 
     componentDidMount() {
@@ -27,37 +27,21 @@ class App extends Component {
         this.setState({ searchValue: e.target.value });
     }
 
+    searchEngineChanged(e) {
+        const value = e.target.value;
+        this.setState({
+            engine: value
+        }, () => this.search());
+    }
+
+
     search() {
-        this.setState({ loading: true });
-        search(this.state.searchValue, this.state.engine)
-            .then(images => {
-                console.log(images[0]);
-                const photos = images.map((img) => {
-                    if (this.state.engine === 'giphy') {
-                        return {
-                            id: img.id,
-                            videoSmall: img.images['downsized_small'],
-                            videoOriginal: img.images['original_mp4'],
-                            thumbnail: img.images['480w_still']
-                        }
-                    } else if (this.state.engine === 'flicker') {
-                        return {
-                            id: img['id'],
-                            url: `http://farm${img.farm}.staticflickr.com/` +
-                            `${img.server}/${img.id}_${img.secret}.jpg`
-                        }
-                    }
-                });
+        this.setState({ loading: true, images: [] });
+        searchForAssest(this.state.searchValue, this.state.engine)
+            .then(photos => {
                 this.setState({ photos, loading: false })
             })
             .catch(err => this.setState({ photos: [], loading: false }));
-    }
-
-    engineChanged(e) {
-        const value = e.target.value;
-        this.setState(() => ({
-            engine: value
-        }), this.search(value));
     }
 
     onImageClick(e) {
@@ -70,7 +54,7 @@ class App extends Component {
                 <Search
                     search={this.search}
                     engine={this.state.engine}
-                    engineChanged={this.engineChanged}
+                    engineChanged={this.searchEngineChanged}
                     searchTermChanged={this.searchTermChanged}
                     searchValue={this.state.searchValue}
                 />

@@ -28,7 +28,7 @@ export default class Video extends React.Component {
                         id={video.id}
                     >
                         <video>
-                            <source src={video.videoSmall.mp4}/>
+                            <source src={video.url.mp4}/>
                         </video>
                     </a>
                 </Observer>
