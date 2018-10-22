@@ -1,9 +1,10 @@
 import React from 'react';
 import Video from './video';
+import './videos.scss';
 
 export default function Videos({ type, videos, onVideoClick }) {
     return (
-        <div className="photos-grid">
+        <div className="videos-grid">
             {videos.map(video => (
                 <Video
                     key={video.id}

@@ -27,8 +27,8 @@ export default class Video extends React.Component {
                         className="photos-grid__link"
                         id={video.id}
                     >
-                        <video>
-                            <source src={video.url.mp4}/>
+                        <video autoPlay loop muted>
+                            <source src={video.url.mp4} />
                         </video>
                     </a>
                 </Observer>
