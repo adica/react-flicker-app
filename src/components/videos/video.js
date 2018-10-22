@@ -1,11 +1,10 @@
 import React from 'react';
 import Observer from 'react-intersection-observer';
-import './photo.scss';
+import '../photos/photo.scss';
 
 export default class Video extends React.Component {
     constructor(props) {
         super(props);
-        this.placeholderUrl = '//via.placeholder.com/400x400?text=loading';
         this.state = {
             visibility: false
         };

@@ -1,17 +1,10 @@
-// Variables / Config
-//
-$mq-xsmall: 640px;
-$mq-small: 768px;
-$mq-med: 1024px;
-$mq-large: 1440px;
-$mq-xlarge: 1840px;
+@import './../../variables';
 
 .videos-grid {
   display: block;
 
   &:after {
     content: "";
-
     display: table;
     clear: both;
   }

@@ -1,7 +1,7 @@
 const apiKey = 'e38f1bc56d9486ca37e84667b7a98ba8';
 const flickerApi = 'https://api.flickr.com/services/rest';
 
-const format= (img) => {
+const format = (img) => {
     return {
         id: img['id'],
         url: `http://farm${img.farm}.staticflickr.com/${img.server}/${img.id}_${img.secret}.jpg`

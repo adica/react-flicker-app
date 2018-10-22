@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { searchForAssest } from './services/search-service';
-import Search from './components/search';
-import Photos from './components/photos';
-import Videos from './components/videos';
+import Search from './components/search/search';
+import Photos from './components/photos/photos';
+import Videos from './components/videos/videos';
 import './app.scss';
 
 class App extends Component {
@@ -34,7 +34,6 @@ class App extends Component {
         }, () => this.search());
     }
 
-
     search() {
         this.setState({ loading: true, images: [] });
         searchForAssest(this.state.searchValue, this.state.engine)
@@ -45,6 +44,7 @@ class App extends Component {
     }
 
     onImageClick(e) {
+        //todo
         console.log('onImageClick: ', e.target.id);
     }
 
@@ -61,7 +61,7 @@ class App extends Component {
 
                 <div>
                     {this.state.loading && (
-                        <div>Loading...</div>
+                        <div className="loading">Loading...</div>
                     )}
 
                     {this.state.photos.length === 0 && !this.state.loading && (
@@ -69,7 +69,7 @@ class App extends Component {
                     )}
 
                     {this.state.photos.length > 0 && !this.state.loading && (
-                        <div>
+                        <React.Fragment>
                             {this.state.engine === 'flicker' && (
                                 <Photos
                                     photos={this.state.photos}
@@ -82,8 +82,7 @@ class App extends Component {
                                     onVideoClick={this.onImageClick}
                                 />
                             )}
-
-                        </div>
+                        </React.Fragment>
                     )}
 
                 </div>

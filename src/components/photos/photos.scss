@@ -1,22 +1,10 @@
-// Variables / Config
-//
-$mq-xsmall: 640px;
-$mq-small: 768px;
-$mq-med: 1024px;
-$mq-large: 1440px;
-$mq-xlarge: 1840px;
-
-//
-// Media
-//
-
+@import './../../variables';
 
 .photos-grid {
   display: block;
 
   &:after {
     content: "";
-
     display: table;
     clear: both;
   }
@@ -157,11 +145,9 @@ $mq-xlarge: 1840px;
       position: absolute;
       top: 0;
       left: 0;
-
       height: 100%;
       width: 100%;
-
-      background-color: #080808;
+      background-color: $gray-darkest;
       opacity: 0;
       transition: opacity 300ms ease;
     }
@@ -169,7 +155,7 @@ $mq-xlarge: 1840px;
     &:hover {
 
       &:after {
-        opacity: 0.3;
+        opacity: .3;
       }
 
       .absolute-bg {

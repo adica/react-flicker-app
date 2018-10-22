@@ -7,10 +7,10 @@ const format = (img) => {
         url: img.images['original_mp4']
     }
 };
-export  const giphySearch = (term) => {
+export const giphySearch = (term) => {
     const apiUrl = `${giphyApiUrl}?api_key=${giphyApiKey}&q=${term}`;
 
-    return  fetch(apiUrl)
+    return fetch(apiUrl)
         .then(res => res.json())
         .then(result => {
             return result.data.map((img) => format(img));

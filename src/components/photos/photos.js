@@ -3,7 +3,6 @@ import './photo';
 import './photos.scss';
 import Photo from './photo';
 
-
 export default function Photos({ type, photos, onImageClick }) {
     return (
         <div className="photos-grid">
