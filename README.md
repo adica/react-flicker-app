@@ -6,10 +6,10 @@ All assets loads with only when needed (just before entering the viewport) with 
 
 
 todo:
-* add the ability to select multiple images
 * add other sources (`getty` maybe)
 * modal that shows the asset on full page
-* add [Redux](https://redux.js.org/)
+* use `context-api` 
+* add [Redux](https://redux.js.org/) support
 * add [styled-components](https://styled-components.com)
 * add `local-storage` support
 * store selections on DB

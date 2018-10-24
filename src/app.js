@@ -12,11 +12,14 @@ class App extends Component {
             loading: true,
             searchValue: 'car',
             engine: 'flicker',
-            photos: []
+            photos: [],
+            selectedPhotos: [],
+            selectionMode: false
         };
         this.search = this.search.bind(this);
         this.searchTermChanged = this.searchTermChanged.bind(this);
         this.searchEngineChanged = this.searchEngineChanged.bind(this);
+        this.onImageClick = this.onImageClick.bind(this);
     }
 
     componentDidMount() {
@@ -44,8 +47,24 @@ class App extends Component {
     }
 
     onImageClick(e) {
-        //todo
-        console.log('onImageClick: ', e.target.id);
+        const value = e.target.id;
+        const direction = this.state.selectedPhotos.indexOf(value) > -1 ? 'remove' : 'add';
+
+        //add/remove assets from selectedPhotos
+        if (direction === 'add') {
+            this.setState(prevState => ({
+                selectedPhotos: [...prevState.selectedPhotos, value]
+            }));
+        } else {
+            this.setState(prevState => ({
+                selectedPhotos: [...prevState.selectedPhotos.filter((i) => i !== value)]
+            }));
+        }
+
+        //set the selectionMode if there is selected images
+        this.setState(prevState => ({
+            selectionMode: prevState.selectedPhotos.length > 0
+        }));
     }
 
     render() {
@@ -70,9 +89,15 @@ class App extends Component {
 
                     {this.state.photos.length > 0 && !this.state.loading && (
                         <React.Fragment>
+                            {this.state.selectedPhotos.length && (
+                                <div>{this.state.selectedPhotos.length} images selected <button>clear all</button></div>
+                            )}
+
                             {this.state.engine === 'flicker' && (
                                 <Photos
                                     photos={this.state.photos}
+                                    selectedPhotos={this.state.selectedPhotos}
+                                    selectionMode={this.state.selectionMode}
                                     onImageClick={this.onImageClick}
                                 />
                             )}

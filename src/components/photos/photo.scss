@@ -1,5 +1,54 @@
-figure {
-  margin: 0;
+@import './../../variables';
+
+.article {
+  position: relative;
+
+  &:hover {
+    .select-icon {
+      display: block;
+    }
+  }
+
+  .select-icon {
+    display: none;
+    background: none;
+    border: 0;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+
+    svg {
+      fill: rgba($black, .4);
+      transition: all 100ms;
+      transform-origin: 50% 50%;
+    }
+
+    &:hover,
+    &.selected {
+      display: block;
+
+      svg {
+        transform: scale(1.2);
+        fill: $tomato;
+      }
+    }
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  &.selection-mode {
+    .select-icon {
+      display: block;
+    }
+  }
 }
 
 .absolute-bg {
@@ -7,10 +56,8 @@ figure {
   top: 0;
   left: 0;
   z-index: 0;
-
   height: 100%;
   width: 100%;
-
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;

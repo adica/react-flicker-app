@@ -1,5 +1,7 @@
 import React from 'react';
+import cn from 'classnames';
 import Observer from 'react-intersection-observer';
+import { ReactComponent as SelectedIcon } from './../../v-circle.svg';
 import './photo.scss';
 
 export default class Photo extends React.Component {
@@ -17,9 +19,16 @@ export default class Photo extends React.Component {
     }
 
     render() {
-        const { photo, onImageClick } = this.props;
+        const { photo, isSelected, selectionMode, onImageClick } = this.props;
+        const articleClasses = cn('article', { 'selection-mode': selectionMode });
+        const selectedClasses = cn('select-icon', { 'selected': isSelected });
+
         return (
-            <article>
+            <article className={articleClasses}>
+                <button className={selectedClasses} onClick={onImageClick}>
+                    <SelectedIcon />
+                </button>
+
                 <Observer onChange={this.handleChange} rootMargin="50px 50px 50px 50px">
                     <a
                         href="#"
@@ -40,6 +49,7 @@ export default class Photo extends React.Component {
                                 className="absolute-bg"
                                 style={{ backgroundImage: `url(${this.placeholderUrl})` }}
                             />
+
                         )}
                     </a>
                 </Observer>

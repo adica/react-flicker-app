@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://adica.github.io/react-flicker-app",
   "devDependencies": {
+    "classnames": "^2.2.6",
     "gh-pages": "^1.2.0"
   },
   "dependencies": {
