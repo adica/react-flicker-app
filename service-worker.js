@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/react-flicker-app/precache-manifest.7b32e018c6ce858a122b137244a4919b.js"
+  "/react-flicker-app/precache-manifest.6267038e786e56a2a924ad51de8bb238.js"
 );
 
 workbox.clientsClaim();
