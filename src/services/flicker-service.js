@@ -4,7 +4,7 @@ const flickerApi = 'https://api.flickr.com/services/rest';
 const format = (img) => {
     return {
         id: img['id'],
-        url: `http://farm${img.farm}.staticflickr.com/${img.server}/${img.id}_${img.secret}.jpg`
+        url: `//farm${img.farm}.staticflickr.com/${img.server}/${img.id}_${img.secret}.jpg`
     }
 };
 
